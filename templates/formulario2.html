@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{%block content%}
+
+{% from "_macros.html" import render_input %}
+
+<form name="form1" method="get">
+    <div class="control-group">
+        <div class="controls">
+            {{render_input("txtNombre", "Nombre")}}
+            {{render_input("txtApaterno", "Apaterno")}}
+            {{render_input("txtEmail", "Email", type="Email")}}
+            {{render_input("txtPassword", "Password", type="Password")}}
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-default btn-primary">
+                <i class="icon-book icon-white"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+{%endblock%}
