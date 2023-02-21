@@ -10,13 +10,17 @@ def formulario2():
 
 @app.route("/Alumnos",methods=["GET", "POST"])
 def Alumno():
-    alum_form = forms.UserForm(request.form)    
-    alum_form =  forms.UserForm.matricula
-    alum_form =  forms.UserForm.nombre
-    alum_form =  forms.UserForm.aPaterno
-    alum_form =  forms.UserForm.aMaterno
-    alum_form =  forms.UserForm.email
-    return render_template("Alumnos.html")
+    alum_form = forms.UserForm(request.form)
+    mat = ''
+    nom = ''
+    if request.method=='POST' and alum_form.validate():
+        mat = alum_form.matricula.data
+        nom = alum_form.nombre.data
+        ap = alum_form.aPaterno.data
+        am = alum_form.aMaterno.data
+        em = alum_form.email.data
+        pas = alum_form.password.data
+    return render_template("Alumnos.html", form = alum_form, matricula = mat, nombre = nom)
 
 
 if __name__ == "__main__":

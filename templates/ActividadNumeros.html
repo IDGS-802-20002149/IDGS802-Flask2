@@ -1,0 +1,26 @@
+{%extends "layout.html"%}
+
+{%block content%}
+<div>
+    {% from "_macros.html" import render_input, render_field %}
+    <form action="/Actividad1" method="post">
+        <h3>Ingresa la cantidad de numeros a ingresar</h3>
+        {{render_field(form.num)}}  
+        <input type="submit" name="btnCalcular" value="Generar">
+    </form>
+    </form action="/Actividad1" method="post">   
+    {% if form.num.data%} 
+        {%for i in range(0, form.num.data)%}
+            {{render_input(name="numeros")}}
+        {%endfor%}
+    {%endif%}
+        <input type="submit" name="btnCalcular" value="Calcular">
+    </form>
+    <div>
+        <h3>El valor mas chico es: {{menor}}</h3>
+        <h3>El valor mas grande es: {{mayor}}</h3>
+        <h3>El promedio es: {{promedio}}</h3>
+    </div>
+</div>
+
+{%endblock%}

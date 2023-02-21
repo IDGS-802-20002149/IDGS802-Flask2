@@ -1,0 +1,5 @@
+
+Matricula:12345
+Nombre:Mario
+Apellidos:Lopez
+correo:123@123
