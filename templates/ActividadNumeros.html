@@ -1,26 +1,62 @@
-{%extends "layout.html"%}
+{%extends "layout2.html" %}
 
-{%block content%}
-<div>
-    {% from "_macros.html" import render_input, render_field %}
-    <form action="/Actividad1" method="post">
-        <h3>Ingresa la cantidad de numeros a ingresar</h3>
-        {{render_field(form.num)}}  
-        <input type="submit" name="btnCalcular" value="Generar">
-    </form>
-    </form action="/Actividad1" method="post">   
-    {% if form.num.data%} 
-        {%for i in range(0, form.num.data)%}
-            {{render_input(name="numeros")}}
-        {%endfor%}
-    {%endif%}
-        <input type="submit" name="btnCalcular" value="Calcular">
-    </form>
-    <div>
-        <h3>El valor mas chico es: {{menor}}</h3>
-        <h3>El valor mas grande es: {{mayor}}</h3>
-        <h3>El promedio es: {{promedio}}</h3>
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4 my-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success text-center">Calculadora de minimos y maximos</h3>
+                </div>
+                <div class="card-body">
+                    {% from "_macros2.html" import render_field, render_input %}
+                    <form class="form" action="/Actividad1" method="POST">
+                        <input type="hidden" name="csrf_token" value="">
+                        {{render_field(form.inputNum)}}
+                        <div class="d-flex justify-content-center">
+                            <input class="btn btn-outline-success" type="submit" name="btnCalcular" value="Generar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 my-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success text-center">Entradas</h3>
+                </div>
+                <div class="card-body">
+                    {% if form.inputNum.data %}
+                    <form  class="form" action="/Actividad1" method="POST">
+                        <input type="hidden" name="csrf_token" value=""/>
+                            {% for i in range(0, form.inputNum.data) %}
+                            {{ render_input(name="numeros") }}
+                            {% endfor %}
+                        <div class="d-flex justify-content-center">
+                            <input class="btn btn-outline-success" type="submit" name="btnCalcular" value="Calcular">
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-3 my-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success text-center">Resultados</h3>
+                </div>
+                <div class="card-body text-center">
+                    <h5>Mayor: {{mayor}}</h5>
+                    <h5>Menor: {{menor}}</h5>
+                    <h5>Promedio: {{prom}}</h5>
+                    <h5>Repetidos</h5>
+                    <ul>
+                        {{repetidos|safe}}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-{%endblock%}
+{% endblock %}

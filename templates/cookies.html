@@ -1,0 +1,24 @@
+{%extends "layout.html"%}
+
+{%block content%}
+    <div class="col-xs-6">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <form action="" method="post" novalidate>
+            {% from "_macros.html" import render_field %}
+            <div class="form-group">
+                {{render_field(form.user)}}
+            </div>
+            {{render_field(form.passw)}}
+            <input type="submit" value="Registrar">
+        </form>
+    </div>
+    <div class="col-xs-6">
+        {% with messages = get_flased_messages()%}
+            {%if messages%}
+                {%for message in messages%}
+                    <div class="alert alert-success"></div>
+                {%endfor%}
+            {%endif%}
+        {%endwith%}
+    </div>
+{%endblock%}

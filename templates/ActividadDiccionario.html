@@ -1,0 +1,57 @@
+{%extends "layout2.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    {% from "_macros2.html" import render_field%}
+    <div class="row">
+        <div class="col-4 my-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success text-center">Diccionario de palabras</h3>
+                </div>
+                <div class="card-body">
+                    <form class="form" action="/Actividad2" method="POST">
+                        <input type="hidden" name="csrf_token" value="">
+                        {{render_field(form.eng)}}
+                        {{render_field(form.esp)}}
+                        <div class="d-flex justify-content-center">
+                            <input class="btn btn-outline-success" type="submit" name="button" value="Guardar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 my-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success text-center">Busquedas</h3>
+                </div>
+                <div class="card-body">
+                    <form class="form" action="/Actividad2" method="POST">
+                        <input type="hidden" name="csrf_token" value="">
+                        <div class="d-flex justify-content-center">
+                            <input class="mx-3" type="radio" name="rbtnOpcion" value="1" checked>English
+                            <input class="mx-3" type="radio" name="rbtnOpcion" value="2">Spanish
+                        </div>
+                        {{render_field(form.busqueda)}}
+                        <div class="d-flex justify-content-center">
+                            <input class="btn btn-outline-success" type="submit" name="button" value="Buscar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 my-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-success text-center">Resultados</h3>
+                </div>
+                <div class="card-body text-center">
+                    <h5>{{sought}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
